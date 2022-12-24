@@ -1,0 +1,195 @@
+<%- include('../partials/adminheader') -%>
+<%- include('../partials/adminsidebar') -%>   
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row align-items-center">
+                    <div class="col-5">
+                        <h4 class="page-title">View Orders</h4>
+                        <div class="d-flex align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Library</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Sales chart -->
+                <!-- ============================================================== -->
+               
+                <!-- ============================================================== -->
+                <!-- Sales chart -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Table -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- title -->
+                                <div class="d-md-flex">
+                                    <div>
+                                        <h4 class="card-title">Orders</h4>
+                                        <h5 class="card-subtitle">Overview of the Orders</h5>
+                                    </div>
+                                  
+                                </div>
+                                <!-- title -->
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table v-middle">
+                                    <thead>
+                                        <tr class="bg-light">
+                                            <th class="border-top-0">SL NO</th>
+                                            <th class="border-top-0">Order ID</th>
+                                            
+                                            <th class="border-top-0">User Email</th>
+                                            <th class="border-top-0">Date</th>
+                                            
+                                            <th class="border-top-0">Payment<br>Type</th>
+                                            <th class="border-top-0">Total<br>Prize</th>
+                                            <th class="border-top-0">Address</th>
+                                        
+                                            <th class="border-top-0">Status</th>
+                                            <th class="border-top-0">Actions</th>
+                                            
+                                            <th class="border-top-0"></th>
+                                            
+                                            
+
+
+                                           
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        <% if(orders.length >=0 ){ %>
+                                            <% for(let i=1; i<orders.length; i++){ %>
+                                                 <tr>
+                                                <td><%= i %></td>
+                                                    
+                                                <td> <%= orders[i-1]._id %></td>
+                                                <td> <%= orders[i-1].email %></td>
+                                                <td> <%= orders[i-1].createdAt %></td>
+                                                
+                                                <td> <%= orders[i-1].payment %></td>
+                                                <td> <%= orders[i-1].totalPrice %> </td>
+                                                
+                                                
+                                                <td> <%= orders[i-1].address %><br><%= orders[i-1].town %><br><%= orders[i-1].state %><br><%= orders[i-1].postcode %><br><%= orders[i-1].phone %></td>
+
+
+                                                <td>
+                                                    <% if(orders[i-1].is_varified == 0){ %> 
+                                                 <p>not verified</p>
+                                                 <% }else{ %>
+                                                 <p>verified</p>
+
+                                                <% } %>
+                                                <td>
+                                                    <form action="/admin/order-status?id=<%=orders[i-1]._id %> "
+                                                        method="post">
+                                                        <button class="btn btn-outline-primary"><i
+                                                                class="m-r-5 mdi mdi-border-color"></i>confirm</a><br></button>
+                                                    </form>
+                                                    <form action="/admin/cancel-order?id=<%=orders[i-1]._id %>"
+                                                        method="post">
+                                                        <button class="btn btn-outline-danger" href=""><i
+                                                                class=" m-r-5 mdi mdi-delete-forever"></i>
+                                                            Cancel</button>
+                                                    </form>
+
+                                                </td>
+                                                
+                                                     
+                                                        
+                                                    
+                                            <%}%>
+
+
+
+                                        <% } %>    
+                                        </tr> 
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- Table -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Recent comment and chats -->
+                <!-- ============================================================== -->
+             
+                <!-- ============================================================== -->
+                <!-- Recent comment and chats -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center">
+                All Rights Reserved by Xtreme Admin. Designed and Developed by <a
+                    href="https://www.wrappixel.com">WrapPixel</a>.
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="dist/js/app-style-switcher.js"></script>
+    <!--Wave Effects -->
+    <script src="dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="dist/js/custom.js"></script>
+    <!--This page JavaScript -->
+    <!--chartis chart-->
+    <script src="assets/libs/chartist/dist/chartist.min.js"></script>
+    <script src="assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <script src="dist/js/pages/dashboards/dashboard1.js"></script>
+</body>
+
+</html>

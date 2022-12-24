@@ -1,0 +1,178 @@
+<%- include('../partials/adminheader') -%>
+<%- include('../partials/adminsidebar') -%>  
+        <!-- ============================================================== -->  
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <div class="page-breadcrumb">
+                <div class="row align-items-center">
+                    <div class="col-5">
+                        <h4 class="page-title">Dashboard</h4>
+                        <div class="d-flex align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+
+                                    <form action=""  >
+                                       <input type="text" placeholder="search user name,email,mobile number" name="search">
+                                       <button type="submit" place="search">Search</button>
+                                    </form>
+                                    
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Bread crumb and right sidebar toggle -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Sales chart -->
+                <!-- ============================================================== -->
+               
+                <!-- ============================================================== -->
+                <!-- Sales chart -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Table -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <!-- column -->
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <!-- title -->
+                                <div class="d-md-flex">
+                                    <div>
+                                        <h4 class="card-title">Registered Users</h4>
+                                        
+                                    </div>
+                                  
+                                </div>
+                                <!-- title -->
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table v-middle">
+                                    <thead>
+                                        <tr class="bg-light">
+                                            <th class="border-top-0">Name</th>
+                                            <th class="border-top-0">Email</th>
+                                            <th class="border-top-0">Mobile Number</th>
+                                            <th class="border-top-0">varified</th>
+                                            <th class="border-top-0">Actions</th>
+
+
+                                           
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        <% if(users.length >0 ){ %>
+                                            <% for(let i=0; i<users.length; i++){ %>
+                                                <tr>
+                                                <td> <%= users[i].name %></td>
+                                                <td> <%= users[i].email %></td>
+                                                <td> <%= users[i].mno %></td>
+                                                <td> <%= users[i].is_varified %></td>
+
+                                                <td>
+                                                    <% if(users[i].is_varified == 0){ %>
+                                                 <p>not verified</p>
+                                                 <% }else{ %>
+                                                 <p>verified</p>
+
+                                                <% } %>
+                                                </td>
+
+                                                 <td> 
+                                                    <a href="/admin/block-user?id=<%= users[i]._id %>" class="btn btn-primary ms-2 ">
+                                                        <% if(users[i].is_varified) { %>
+                                                            Block
+                                                            <% } else { %>
+                                                            
+                                                                Unblock
+                                                                <% } %>
+                                                    </a>
+                                                </td>
+                                                
+                                                     
+                                                        
+                                                    
+                                            <%}%>
+
+
+
+                                        <% } %>    
+                                        </tr> 
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- ============================================================== -->
+                <!-- Table -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Recent comment and chats -->
+                <!-- ============================================================== -->
+             
+                <!-- ============================================================== -->
+                <!-- Recent comment and chats -->
+                <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <footer class="footer text-center">
+                All Rights Reserved by Xtreme Admin. Designed and Developed by <a
+                    href="https://www.wrappixel.com">WrapPixel</a>.
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="assets/libs/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap tether Core JavaScript -->
+    <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="dist/js/app-style-switcher.js"></script>
+    <!--Wave Effects -->
+    <script src="dist/js/waves.js"></script>
+    <!--Menu sidebar -->
+    <script src="dist/js/sidebarmenu.js"></script>
+    <!--Custom JavaScript -->
+    <script src="dist/js/custom.js"></script>
+    <!--This page JavaScript -->
+    <!--chartis chart-->
+    <script src="assets/libs/chartist/dist/chartist.min.js"></script>
+    <script src="assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <script src="dist/js/pages/dashboards/dashboard1.js"></script>
+</body>
+
+</html>
