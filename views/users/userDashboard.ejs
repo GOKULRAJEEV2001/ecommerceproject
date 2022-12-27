@@ -694,40 +694,57 @@
 								    </div><!-- .End .tab-pane -->
 
 								    <div class="tab-pane fade" id="tab-account" role="tabpanel" aria-labelledby="tab-account-link">
-								    	<form action="#">
-			                				<div class="row">
-			                					<div class="col-sm-6">
-			                						<label>First Name *</label>
-			                						<input type="text" class="form-control" required>
-			                					</div><!-- End .col-sm-6 -->
+                                        <form action="/save-add" method="post"  >
+		                					<div class="col-sm-6">
+		                						<label> Name *</label>
+		                						<input type="text" style="margin-top: 1ex;"   name="name" class="form-control" >
+		                					</div><!-- End .col-sm-6 -->
 
-			                					<div class="col-sm-6">
-			                						<label>Last Name *</label>
-			                						<input type="text" class="form-control" required>
-			                					</div><!-- End .col-sm-6 -->
-			                				</div><!-- End .row -->
+		                					
+		                				
 
-		            						<label>Display Name *</label>
-		            						<input type="text" class="form-control" required>
-		            						<small class="form-text">This will be how your name will be displayed in the account section and in reviews</small>
+	            						<label>Company Name (Optional)</label>
+	            						<input type="text"   name="cname" class="form-control">
 
-		                					<label>Email address *</label>
-		        							<input type="email" class="form-control" required>
+	            						<label>Country *</label>
+	            						<input type="text"  name="country" class="form-control" >
 
-		            						<label>Current password (leave blank to leave unchanged)</label>
-		            						<input type="password" class="form-control">
+	            						<label>Street address *</label>
+	            						<input type="text" class="form-control" name="address" placeholder="House number and Street name" >
+	            						
+	            						<div class="row">
+		                					<div class="col-sm-6">
+		                						<label>Town / City *</label>
+		                						<input type="text"  name="town" class="form-control" >
+		                					</div><!-- End .col-sm-6 -->
 
-		            						<label>New password (leave blank to leave unchanged)</label>
-		            						<input type="password" class="form-control">
+		                					<div class="col-sm-6">
+		                						<label>State / County *</label>
+		                						<input type="text"  name="state" class="form-control" >
+		                					</div><!-- End .col-sm-6 -->
+		                				</div><!-- End .row -->
 
-		            						<label>Confirm new password</label>
-		            						<input type="password" class="form-control mb-2">
+		                				<div class="row">
+		                					<div class="col-sm-6">
+		                						<label>Postcode / ZIP *</label>
+		                						<input type="text" class="form-control"  name="postcode" >
+		                					</div><!-- End .col-sm-6 -->
 
-		                					<button type="submit" class="btn btn-outline-primary-2">
-			                					<span>SAVE CHANGES</span>
-			            						<i class="icon-long-arrow-right"></i>
-			                				</button>
-			                			</form>
+		                					<div class="col-sm-6">
+		                						<label>Phone *</label>
+		                						<input type="tel" class="form-control"  name="phone" >
+		                					</div><!-- End .col-sm-6 -->
+		                				</div><!-- End .row -->
+
+	                					<label>Email address *</label>
+	        							<input type="email" name="email" class="form-control">
+
+                                        <button type="submit" class="btn btn-outline-primary-2 btn-order btn-block">
+		                					<span class="btn-text">Save Address</span>
+		                					<span class="btn-hover-text">Save Address</span>
+		                				</button>
+
+                                     </form>
 								    </div><!-- .End .tab-pane -->
 								</div>
 	                		</div><!-- End .col-lg-9 -->

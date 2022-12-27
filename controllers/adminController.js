@@ -5,6 +5,28 @@ const Cart = require("../models/orderSchema");
 const Category = require("../models/categoryModel");
 const Coupon = require("../models/couponModel");
 const bcrypt = require('bcrypt');
+const Banner = require('../models/bannerModel');
+
+
+const path = require("path");
+const multer = require("multer");
+const { log } = require("console");
+const { render } = require("../routes/userRoute");
+let storage = multer.diskStorage({
+  destination: "./public/assets/uploads/",
+  filename: (req, file, cb) => {
+    cb(
+      null,
+      file.fieldname + "_" + Date.now() + path.extname(file.originalname)
+    );
+  },
+});
+
+let upload = multer({
+  storage: storage,
+}).single("image");
+
+
 
 let isadLogin
 isadLogin = false
@@ -27,6 +49,9 @@ const loadLogin = (req, res) => {
     console.log(error.message);
   }
 }
+
+
+//const uploads= multer({ storage:storage }).single("productImage");
 
 
 const dashBoard = async (req, res) => {
@@ -165,21 +190,6 @@ const updateAddProduct = async (req, res) => {
 
 
 
-const path = require("path");
-const multer = require("multer");
-const { log } = require("console");
-let Storage = multer.diskStorage({
-  destination: "./public/assets/uploads/",
-  filename: (req, file, cb) => {
-    cb(
-      null,
-      file.fieldname + "_" + Date.now() + path.extname(file.originalname)
-    );
-  },
-});
-let upload = multer({
-  storage: Storage,
-}).single("image");
 
 
 
@@ -431,6 +441,59 @@ const delCoupon = async (req, res) => {
 }
 
 
+const banner = async (req, res) => {
+  try {
+      const banner = await Banner.find()
+      res.render('bannerManage', { banner: banner })
+  } catch (error) {
+      console.log(error.message);
+  }
+}
+
+
+const addbanner = async (req, res) => {
+  try {
+
+    console.log(req.body);
+          const banner = new Banner({
+              bannerImage: req.file.filename,
+              
+              bannerHead: req.body.head,
+              bannerSub: req.body.sub
+          })
+          await banner.save()
+          const banners = await Banner.find()
+          console.log(banners);
+          res.render('bannerManage', { banner: banners })
+  } catch (error) {
+      console.log(error.message);
+  }
+}
+
+
+
+const deleteBanner = async (req, res) => {
+
+  try {
+    const id = req.query.id;
+    await Banner.deleteOne({ _id: id });
+    res.redirect('/admin/view-bann');
+  }
+
+  catch (error) {
+    console.log(error.message);
+  }
+}
+const salesReport = async(req,res)=>{
+
+
+  const productData = await Product.find()
+
+
+  res.render('salesReport',{product:productData});
+}
+
+
 
 
 
@@ -467,6 +530,13 @@ module.exports = {
   dashBoard,
   addCop,
   addcoupon,
-  delCoupon
+  delCoupon,
+  banner,
+  addbanner,
+  deleteBanner,
+  salesReport
+ 
+  
+  
 
 }

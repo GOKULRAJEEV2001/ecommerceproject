@@ -73,6 +73,8 @@ userRoute.get('/go-back',userController.backCheckout);
 
 userRoute.post('/apply-coupon',userController.applyCoupon);
 
+userRoute.post('/save-add',userController.saveAdd);
+
 
 //userRoute.get('/order-placed',userController)
 

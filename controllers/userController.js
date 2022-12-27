@@ -4,6 +4,8 @@ const Cart = require("../models/cartModel");
 const Order= require("../models/orderSchema");
 const Category=require('../models/categoryModel');
 const Coupon = require("../models/couponModel");
+const Banner = require('../models/bannerModel');
+const Address=require('../models/addressModel');
 
 const bcrypt=require('bcrypt');
 const fast2sms=require('fast-two-sms');
@@ -125,11 +127,12 @@ const insertUser = async(req,res)=>{
 const indexLoad = async(req,res)=>{
 
     const productData=await Product.find();
+    const banner = await Banner.find();
 
 
     const categories = await Category.find()
     res.render('home',{ isloggedIn,
-        products:productData,category:categories})
+        products:productData,category:categories,banner:banner})
 
     
 
@@ -329,8 +332,12 @@ const viewCheckout= async(req,res)=>{
     const orderData= await Order.find();
     const productData = await Cart.findOne({userId: req.session.userId}).populate('items.pid');
     const fortotal = await Cart.findOne({userId:req.session.userId});
-    
-    res.render('checkout',{orders:orderData,totalprice: fortotal.totalPrice});
+    const addnewadd= await Address.find({userId:req.session.userId});
+    console.log(addnewadd);
+    console.log(req.query.id);
+    const queryadd = await Address.findOne({_id:req.query.id})
+    console.log(queryadd);
+    res.render('checkout',{orders:orderData,totalprice: fortotal.totalPrice,newadd:addnewadd,saddress:queryadd});
 
 }
 
@@ -369,8 +376,18 @@ const checkoutFinal = async (req, res) => {
         
     })
     await orders.save()
-    
-  
+    req.session.currentOrder = orders._id;
+    const order = await Order.findById({_id:req.session.currentOrder})
+    const productDetails = await Product.find()
+        for(let i=0;i<productDetails.length;i++){
+            for(let j=0;j<order.items.length;j++){
+               
+             if(productDetails[i]._id.equals(order.items[j].pid)){
+                 productDetails[i].qty+=order.items[j].qty;
+             }    
+            }productDetails[i].save()
+         }
+
     if (req.body.payment == 'cod') {
         await Order.findOneAndUpdate({ userId: req.session.userId }, { status: 'build' })
         const orderData = await Order.findOne({userId:req.session.userId}).populate('items.pid')
@@ -501,12 +518,14 @@ const selCategories = async (req, res) => {
 
 const  applyCoupon = async (req, res) => {
     try {
+        console.log('1');
         const userCart = await Cart.findOne({ userId: req.session.userId })
          
     
 
 
         const couponCode = req.body.couponcode
+        console.log(couponCode,'coupon');
         
         req.session.couponcode = couponCode
 
@@ -522,8 +541,10 @@ const  applyCoupon = async (req, res) => {
                 
                 req.session.totalPrice = newtotalprice
                 
+                const addnewadd= await Address.find({userId:req.session.userId});
+                const queryadd = await Address.findOne({_id:req.query.id})
                 
-                res.render('checkout', { message: '', totalprice: req.session.totalPrice, coupon: req.session.couponcode })
+                res.render('checkout', { message: '', totalprice: req.session.totalPrice, coupon: req.session.couponcode,newadd:addnewadd,saddress:queryadd })
             } else {
                 res.redirect('/view-checkout')
             }
@@ -535,6 +556,29 @@ const  applyCoupon = async (req, res) => {
         if (error) {
             res.redirect('/')
         }
+        console.log(error.message);
+    }
+}
+
+const saveAdd = async(req,res)=>{
+    try {
+        const address = new Address({
+        userId: req.session.userId,
+        name: req.body.name,
+        cname:req.body.cname,
+        email: req.body.email,
+      
+        phone: req.body.phone,
+        address: req.body.address,
+        
+        country: req.body.country,
+        town: req.body.town,
+        state: req.body.state,
+        })
+        await address.save();
+        
+        res.redirect('/user-dash')
+    } catch (error) {
         console.log(error.message);
     }
 }
@@ -601,5 +645,6 @@ module.exports={
     backCheckout,
     addtoWish,
     deleteCart,
-    applyCoupon
+    applyCoupon,
+    saveAdd
 }

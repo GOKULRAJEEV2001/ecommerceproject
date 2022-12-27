@@ -79,6 +79,14 @@ adminRoute.post('/add-coupon',adminController.addcoupon);
 
 adminRoute.post('/delete-coupon',adminController.delCoupon);
 
+adminRoute.get('/view-bann',adminController.banner);
+
+adminRoute.post('/add-banner',adminController.upload,adminController.addbanner);
+
+adminRoute.post('/delete-banner',adminController.deleteBanner);
+
+adminRoute.get('/sales-report',adminController.salesReport)
+
 
 
 
