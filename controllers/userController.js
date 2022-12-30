@@ -126,7 +126,25 @@ const insertUser = async(req,res)=>{
 
 const indexLoad = async(req,res)=>{
 
-    const productData=await Product.find();
+    
+  var search = '';
+  if (req.query.search) {
+
+    search = req.query.search;
+
+  }
+
+
+  const productData = await Product.find({
+    is_admin: 0,
+    $or: [
+      { name: { $regex: '.*' + search + '.*' } },
+      { genre: { $regex: '.*' + search + '.*' } }
+    ]
+
+  });
+
+    
     const banner = await Banner.find();
 
 
