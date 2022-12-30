@@ -492,7 +492,7 @@ const salesReport = async(req,res)=>{
 
   res.render('salesReport',{product:productData});
 }
-
+ 
 
 
 
