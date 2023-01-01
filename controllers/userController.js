@@ -530,7 +530,8 @@ const orderDetails=async(req,res)=>{
 const selCategories = async (req, res) => {
     const productData = await Product.find({ genre: req.query.id })
     const categories = await Category.find()
-    res.render('home', { products: productData, isloggedIn, category: categories })
+    const banner = await Banner.find();
+    res.render('home', { products: productData, isloggedIn, category: categories,banner:banner })
 }
 
 const  applyCoupon = async (req, res) => {
