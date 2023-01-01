@@ -168,6 +168,7 @@ const updateAddProduct = async (req, res) => {
       name: req.body.name,
       genre: req.body.genre,
       prize: req.body.prize,
+      description:req.body.description,
 
       image: req.file.filename
 
