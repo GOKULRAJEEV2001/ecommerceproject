@@ -75,6 +75,8 @@ userRoute.post('/apply-coupon',userController.applyCoupon);
 
 userRoute.post('/save-add',userController.saveAdd);
 
+userRoute.get('/pro-des',userController.proDes);
+
 
 //userRoute.get('/order-placed',userController)
 

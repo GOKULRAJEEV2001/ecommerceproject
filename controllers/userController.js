@@ -600,6 +600,16 @@ const saveAdd = async(req,res)=>{
         console.log(error.message);
     }
 }
+
+const proDes=async(req,res)=>{
+
+    usersession=req.session
+    const oid=req.query.id;
+    console.log('0',oid);
+    const productData = await Product.find({_id:oid});
+    res.render('productDesc',{products:productData});
+
+}
   
 
   
@@ -664,5 +674,6 @@ module.exports={
     addtoWish,
     deleteCart,
     applyCoupon,
-    saveAdd
+    saveAdd,
+    proDes
 }
