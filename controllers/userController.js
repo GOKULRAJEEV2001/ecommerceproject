@@ -133,8 +133,7 @@ const indexLoad = async(req,res)=>{
     search = req.query.search;
 
   }
-
-
+  
   const productData = await Product.find({
     is_admin: 0,
     $or: [

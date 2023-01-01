@@ -1,14 +1,14 @@
 <% if(isloggedIn){ %>
-    <%-include('../partials/userHeader') %>
+    <%-include('.. /partials/userHeader') %>
         <%} else { %>
-            <%-include('../partials/normalHeader') %>
+            <%-include('.. /partials/normalHeader') %>
                 <% } %>
 
                     <div class="header-bottom sticky-header">
                         <div class="container">
                             <div style="background-color: #333; display: flex; width: 100%;">
                                 <div class="header-left">
-                                    <div  style="z-index:3" class="dropdown category-dropdown">
+                                    <div style="z-index:3" class="dropdown category-dropdown">
                                         <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false" data-display="static"
                                             title="Browse Categories">
@@ -25,7 +25,10 @@
                                                                 href="/sel-categories?id=<%=category[i-1].category %>">
                                                                 <%=category[i-1].category %>
                                                             </a>
-                                                            <% } } %>
+                                                 
+                                                    <% }  %>
+
+                                                    <% }  %>
 
 
                                                 </ul><!-- End .menu-vertical -->
@@ -73,7 +76,7 @@
                                             <%}%>
 
                                     </div>
-                                    
+
                                 </div><!-- End .row -->
 
                             </div><!-- End .container -->
@@ -197,8 +200,8 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-lg-6 col-xl-5">
                                         <div class="widget widget-about">
-                                            <img src="assets/images/demos/demo-25/redpillreads-low-resolution-color-logo.png" class="footer-logo"
-                                                alt="Footer Logo" width="130" height="65">
+                                            <img src="assets/images/demos/demo-25/redpillreads-low-resolution-color-logo.png"
+                                                class="footer-logo" alt="Footer Logo" width="130" height="65">
                                             <p> Through redpillread you can explore through almost all best books in the
                                                 literary World </p>
 
