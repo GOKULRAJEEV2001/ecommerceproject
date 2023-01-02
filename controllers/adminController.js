@@ -226,7 +226,7 @@ const productEdit = async (req, res) => {
 const updateProduct = async (req, res) => {
   try {
     console.log(req.body);
-    await Product.findByIdAndUpdate({ _id: req.body.id }, { $set: { name: req.body.name, prize: req.body.prize, genre: req.body.genre, image: req.file.filename } })
+    await Product.findByIdAndUpdate({ _id: req.body.id }, { $set: { name: req.body.name, prize: req.body.prize,description:req.body.description, genre: req.body.genre, image: req.file.filename } })
     res.redirect('/admin/viewProducts')
   } catch (error) {
     console.log(error.message);

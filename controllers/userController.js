@@ -128,17 +128,16 @@ const indexLoad = async(req,res)=>{
 
     
   var search = '';
-  if (req.query.search) {
+  if (req.query.Search) {
 
-    search = req.query.search;
+    search = req.query.Search;
 
   }
   
   const productData = await Product.find({
     is_admin: 0,
     $or: [
-      { name: { $regex: '.*' + search + '.*' } },
-      { genre: { $regex: '.*' + search + '.*' } }
+      { name: { $regex: '.*' + search + '.*',$options:'i' } },
     ]
 
   });
